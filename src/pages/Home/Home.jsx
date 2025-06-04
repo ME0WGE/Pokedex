@@ -14,8 +14,15 @@ export default function Home() {
   useEffect(() => {
     axios
       .get("https://pokebuildapi.fr/api/v1/pokemon")
-      .then((response) => setPokemons(response.data), setLoading(false))
-      .catch((error) => console.log(`Error : ${error}`, setError(error)));
+      .then((response) => {
+        setPokemons(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(`Error : ${error}`);
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
   // Filtrer les pokémons selon l'input de l'utilisateur
@@ -28,6 +35,14 @@ export default function Home() {
       <div className="home-container">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
+
+      {/* Animation de chargement pendant que les données sont en train d'être récupérées */}
+      {loading && (
+        <div className="loading-container">
+          <div className="pokeball-spinner"></div>
+          <p>Les Pokémons se réveillent...</p>
+        </div>
+      )}
 
       {/* Si les données sont chargées et qu'il n'y a pas d'erreur alors on affiche le contenu */}
       {!loading && !error && (
