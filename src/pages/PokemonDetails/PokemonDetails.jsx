@@ -236,12 +236,13 @@ export default function PokemonDetails() {
                 <div className="detail-item">
                   <h4>Pré-évolution</h4>
                   <div className="evolutions-list">
-                    <Link
-                      to={`/pokemon/${pokemon.apiPreEvolution.pokedexId}`}
+                    <div
                       className="evolution-item"
-                      style={{ backgroundColor: "#E0C068" }}>
+                      style={{
+                        backgroundColor: getTypeColor(pokemon.apiTypes[0]),
+                      }}>
                       {pokemon.apiPreEvolution.name}
-                    </Link>
+                    </div>
                   </div>
                 </div>
               )}
