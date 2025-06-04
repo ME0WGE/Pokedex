@@ -257,7 +257,10 @@ export default function PokemonDetails() {
                       <Link
                         key={index}
                         to={`/pokemon/${evolution.pokedexId}`}
-                        className="evolution-item">
+                        className="evolution-item"
+                        style={{
+                          backgroundColor: getTypeColor(pokemon.apiTypes[0]),
+                        }}>
                         {evolution.name}
                       </Link>
                     ))}
