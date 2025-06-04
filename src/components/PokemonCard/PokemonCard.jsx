@@ -1,7 +1,8 @@
+import { memo } from "react";
 import "./pokemonCard.css";
 import { Link } from "react-router-dom";
 
-export default function PokemonCard({ pokemon }) {
+const PokemonCard = memo(function PokemonCard({ pokemon }) {
   // Fonction pour s'assurer que la couleur est bien définie
   const getTypeColor = (type) => {
     if (type && type.color) {
@@ -58,4 +59,5 @@ export default function PokemonCard({ pokemon }) {
       </div>
     </div>
   );
-}
+});
+export default PokemonCard;
