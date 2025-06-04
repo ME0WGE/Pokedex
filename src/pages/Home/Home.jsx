@@ -6,18 +6,30 @@ import axios from "axios";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemons, setPokemons] = useState(() => {
+    // Récupération depuis le localStorage s'il existe pour ne pas gaspiller inutilement les ressources à chaque action de raffraîchissement de la page
+    const cachedPokemons = localStorage.getItem("pokemons");
+    return cachedPokemons ? JSON.parse(cachedPokemons) : [];
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Call API
   useEffect(() => {
+    if (pokemons.length > 0) {
+      // Si des données sont déjà en cache, ne pas recharger
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     axios
       .get("https://pokebuildapi.fr/api/v1/pokemon")
       .then((response) => {
         setPokemons(response.data);
         setLoading(false);
+        // Stockage dans localStorage pour les prochaines visites
+        localStorage.setItem("pokemons", JSON.stringify(response.data));
       })
       .catch((error) => {
         console.log(`Error : ${error}`);
