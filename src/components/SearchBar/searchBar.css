@@ -1,0 +1,70 @@
+.search-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.search-bar {
+  position: relative;
+
+  display: flex;
+
+  width: 80%;
+  max-width: 600px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+
+  border: 2px solid var(--pokemon-dark-gray);
+  border-radius: 2rem;
+  background-color: var(--pokemon-dark-blue);
+  color: var(--pokemon-white);
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--pokemon-red);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.3);
+}
+
+.search-bar input::placeholder {
+  color: var(--pokemon-gray);
+}
+
+.search-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  width: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background-color: var(--pokemon-red);
+  color: white;
+  border-radius: 50%;
+
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-button:hover {
+  background-color: var(--pokemon-accent);
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 90%;
+  }
+}

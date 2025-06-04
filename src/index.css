@@ -12,6 +12,19 @@
   text-rendering: optimizeLegibility;
 }
 
+:root {
+  /* Palette de couleurs Pokémon vintage dark */
+  --pokemon-dark-blue: #1e293b;
+  --pokemon-navy: #0f172a;
+  --pokemon-red: #dc2626;
+  --pokemon-yellow: #fbbf24;
+  --pokemon-light-blue: #38bdf8;
+  --pokemon-accent: #f87171;
+  --pokemon-white: #f8fafc;
+  --pokemon-gray: #94a3b8;
+  --pokemon-dark-gray: #475569;
+}
+
 #root {
   display: flex;
   flex-direction: column;
@@ -30,6 +43,7 @@ html {
   width: 100%;
   min-height: 100vh;
 
-  /* Body background color: Very dark blue */
-  background-color: hsl(226, 43%, 10%);
+  /* Body background color: Pokemon dark blue */
+  background-color: var(--pokemon-navy);
+  color: var(--pokemon-white);
 }

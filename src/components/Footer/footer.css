@@ -1,5 +1,5 @@
 footer {
-  border-top: 2px solid hsl(215, 51%, 70%);
+  border-top: 2px solid var(--pokemon-red);
   display: flex;
   text-align: center;
   justify-content: space-between;
@@ -7,7 +7,7 @@ footer {
 
   width: 75%;
 
-  color: white;
+  color: var(--pokemon-white);
 
   margin-bottom: 3rem;
   padding-top: 0.5rem;
@@ -23,31 +23,33 @@ footer {
 
   list-style: none;
 
-  color: hsl(215, 51%, 70%);
+  color: var(--pokemon-gray);
 }
 
 .fa-Heart,
 .fa-Linkedin,
 .fa-Github {
-  color: hsl(215, 51%, 70%);
-
+  color: var(--pokemon-light-blue);
   font-size: 1.5rem;
 }
+
 .fa-Heart {
   margin: 0.25rem;
+  color: var(--pokemon-red);
 }
+
 .fa-Linkedin {
   margin-right: 0.5rem;
 }
 
 .wave-text {
   display: inline-block;
-
   margin-left: 0.25rem;
 }
+
 .wave-text > span {
   -webkit-text-stroke-width: 0.025rem;
-  -webkit-text-stroke-color: purple;
+  -webkit-text-stroke-color: var(--pokemon-yellow);
 }
 
 .wave-text span {

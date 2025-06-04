@@ -1,3 +1,4 @@
+import SearchBar from "../SearchBar/SearchBar";
 import "./navbar.css";
 
 export default function Navbar() {
