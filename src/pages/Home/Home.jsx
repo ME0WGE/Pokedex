@@ -20,7 +20,7 @@ export default function Home() {
       })
       .catch((error) => {
         console.log(`Error : ${error}`);
-        setError(error);
+        setError(error.message);
         setLoading(false);
       });
   }, []);
@@ -29,6 +29,11 @@ export default function Home() {
   const filteredPokemons = pokemons.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Reload la page
+  const handleClick = () => {
+    window.location.reload();
+  };
 
   return (
     <>
@@ -41,6 +46,14 @@ export default function Home() {
         <div className="loading-container">
           <div className="pokeball-spinner"></div>
           <p>Les Pokémons se réveillent...</p>
+        </div>
+      )}
+
+      {/* Afficher le message d'erreur et un bouton pour raffraîchir la page */}
+      {error && (
+        <div className="error-container">
+          <p>Erreur: ${error}</p>
+          <button onClick={handleClick}>Réessayer</button>
         </div>
       )}
 
