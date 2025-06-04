@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "./home.css";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
@@ -13,12 +13,19 @@ export default function Home() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Call API
+  // Call API - version corrigée avec dépendances appropriées
   useEffect(() => {
+    // Seulement charger les données au premier rendu
+    if (!isInitialLoad) {
+      return;
+    }
+
     if (pokemons.length > 0) {
       // Si des données sont déjà en cache, ne pas recharger
       setLoading(false);
+      setIsInitialLoad(false);
       return;
     }
 
@@ -30,23 +37,25 @@ export default function Home() {
         setLoading(false);
         // Stockage dans localStorage pour les prochaines visites
         localStorage.setItem("pokemons", JSON.stringify(response.data));
+        setIsInitialLoad(false);
       })
       .catch((error) => {
         console.log(`Error : ${error}`);
         setError(error.message);
         setLoading(false);
+        setIsInitialLoad(false);
       });
-  }, []);
+  }, [isInitialLoad, pokemons.length]); // Ajout des dépendances nécessaires
 
   // Filtrer les pokémons selon l'input de l'utilisateur
   const filteredPokemons = pokemons.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Reload la page
-  const handleClick = () => {
+  // Reload la page de façon plus propre avec useCallback
+  const handleClick = useCallback(() => {
     window.location.reload();
-  };
+  }, []);
 
   return (
     <>
@@ -65,7 +74,7 @@ export default function Home() {
       {/* Afficher le message d'erreur et un bouton pour raffraîchir la page */}
       {error && (
         <div className="error-container">
-          <p>Erreur: ${error}</p>
+          <p>Erreur: {error}</p> {/* Correction de l'interpolation */}
           <button onClick={handleClick}>Réessayer</button>
         </div>
       )}
