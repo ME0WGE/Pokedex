@@ -12,6 +12,7 @@ export default function Home() {
 
   // Call API
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://pokebuildapi.fr/api/v1/pokemon")
       .then((response) => {
