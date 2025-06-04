@@ -21,7 +21,10 @@
   text-rendering: optimizeLegibility;
   transition: box-shadow 0.3s, background-color 0.3s;
 }
-
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
 .navbar-title {
   font-size: 1.5rem;
   font-weight: bold;
