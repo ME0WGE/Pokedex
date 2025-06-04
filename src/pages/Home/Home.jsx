@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import "./home.css";
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
@@ -15,12 +15,10 @@ export default function Home() {
   const [error, setError] = useState(null);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Call API - version corrigée avec dépendances appropriées
+  // Call API avec une gestion optimisée des dépendances
   useEffect(() => {
     // Seulement charger les données au premier rendu
-    if (!isInitialLoad) {
-      return;
-    }
+    if (!isInitialLoad) return;
 
     if (pokemons.length > 0) {
       // Si des données sont déjà en cache, ne pas recharger
@@ -47,10 +45,12 @@ export default function Home() {
       });
   }, [isInitialLoad, pokemons.length]); // Ajout des dépendances nécessaires
 
-  // Filtrer les pokémons selon l'input de l'utilisateur
-  const filteredPokemons = pokemons.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Utilisation de useMemo pour optimiser le filtrage des pokémons
+  const filteredPokemons = useMemo(() => {
+    return pokemons.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [pokemons, searchTerm]);
 
   // Reload la page de façon plus propre avec useCallback
   const handleClick = useCallback(() => {

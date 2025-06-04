@@ -37,7 +37,13 @@ const PokemonCard = memo(function PokemonCard({ pokemon }) {
   return (
     <div className="pokemon-card">
       <div className="pokemon-card-image">
-        <img src={pokemon.image} alt={pokemon.name} loading="lazy" />
+        <img
+          src={pokemon.image}
+          alt={pokemon.name}
+          loading="lazy"
+          width="150"
+          height="150"
+        />
       </div>
       <div className="pokemon-card-info">
         <h3 className="pokemon-name">{pokemon.name}</h3>

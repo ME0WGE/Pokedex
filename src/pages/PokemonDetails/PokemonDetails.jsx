@@ -108,7 +108,12 @@ export default function PokemonDetails() {
 
         <div className="pokemons-details-main">
           <div className="pokemons-details-image">
-            <img src={pokemon.image} alt={pokemon.name} />
+            <img
+              src={pokemon.image}
+              alt={pokemon.name}
+              width="150"
+              height="150"
+            />
           </div>
 
           {/* Type */}
