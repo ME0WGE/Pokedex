@@ -8,7 +8,7 @@ export default function PokemonCard({ pokemon }) {
       return type.color;
     }
 
-    // Couleurs de secours basées sur le nom du type
+    // Couleurs basées sur le nom du type
     const typeColors = {
       Normal: "#A8A878",
       Feu: "#F08030",
