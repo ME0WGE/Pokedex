@@ -23,7 +23,7 @@ export default function Navbar() {
           className="info-button"
           onClick={toggleModal}
           aria-label="Informations">
-          <FontAwesomeIcon icon={faInfoCircle} size="1x"/>
+          <FontAwesomeIcon icon={faInfoCircle} size="1x" />
         </button>
       </nav>
 
